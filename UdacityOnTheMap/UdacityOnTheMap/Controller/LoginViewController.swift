@@ -10,16 +10,24 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    // Student information cache
-    //static var firstName: String = ""
-    //static var lastName: String = ""
-    //static var userId: String = ""
-    
     let udacitySignupURL = "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated"
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        loginButton.isEnabled = true
+    }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         loginButton.isEnabled = false
@@ -109,5 +117,12 @@ class LoginViewController: UIViewController {
             UIUtils.shared().showAlertView(message: message, parent: self)
             self.loginButton.isEnabled = true
         }
+    }
+}
+
+extension LoginViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

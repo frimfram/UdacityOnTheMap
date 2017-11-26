@@ -20,6 +20,8 @@ class StudentAddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationTextField.delegate = self
+        webTextField.delegate = self
     }
     
     @IBAction func onFindLocation(_ sender: UIButton) {
@@ -69,5 +71,12 @@ class StudentAddViewController: UIViewController {
         let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         let predicate = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
         return predicate.evaluate(with: urlString)
+    }
+}
+
+extension StudentAddViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
