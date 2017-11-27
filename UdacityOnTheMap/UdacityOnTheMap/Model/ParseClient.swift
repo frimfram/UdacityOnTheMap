@@ -16,9 +16,6 @@ class ParseClient : NSObject {
         return Singleton.instance
     }
     
-    var students: [[String:AnyObject]]?
-    var loggedInStudent: Student?
-    
     private override init() {}
 
     func getStudentLocations(completion: @escaping(_ error: String?) -> Void) {
@@ -31,7 +28,7 @@ class ParseClient : NSObject {
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request as URLRequest) { (data, response, error) in
             guard (error == nil) else {
-                completion("Error while getting student locations. error: \(String(describing: error))")
+                completion("Server returned error while getting student locations.")
                 return
             }
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
@@ -45,7 +42,14 @@ class ParseClient : NSObject {
             
             do {
                 let dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
-                self.students = dict["results"] as? [[String:AnyObject]]
+                if let studentsDict = dict["results"] as? [[String:AnyObject]] {
+                    StudentInformation.students = [Student]()
+                    for studentDict in studentsDict {
+                        if let studentStruct = Student(fromData: studentDict) {
+                            StudentInformation.students?.append(studentStruct)
+                        }
+                    }
+                }
                 DispatchQueue.main.async {
                     completion(nil)
                 }

@@ -52,7 +52,7 @@ class StudentLocationsTableViewController: BaseViewController {
 
 extension StudentLocationsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let students = ParseClient.shared().students else {
+        guard let students = StudentInformation.students else {
             return 0
         }
         return students.count
@@ -63,36 +63,30 @@ extension StudentLocationsTableViewController: UITableViewDataSource {
         if tableCell == nil {
             tableCell = UITableViewCell(style: .subtitle, reuseIdentifier: "studentLocationsTableCell")
         }
-        guard let students = ParseClient.shared().students else {
+        guard let students = StudentInformation.students else {
             return tableCell!
         }
         let student = students[indexPath.row]
-        let first = student["firstName"] as? String
-        let last = student["lastName"] as? String
-        let url = student["mediaURL"] as? String
-        
-        if let first=first, let last=last, let url=url {
-            tableCell?.textLabel?.text = "\(first) \(last)"
-            tableCell?.detailTextLabel?.text = url
-            tableCell?.imageView?.image = UIImage(named: "icon_pin")
-        }
+        tableCell?.textLabel?.text = "\(student.firstName) \(student.lastName)"
+        tableCell?.detailTextLabel?.text = student.webURL
+        tableCell?.imageView?.image = UIImage(named: "icon_pin")
+
         return tableCell!
     }
 }
 
 extension StudentLocationsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let students = ParseClient.shared().students else {
+        guard let students = StudentInformation.students else {
             return
         }
-        let mediaUrl = students[indexPath.row]["mediaURL"] as? String
-        guard mediaUrl != nil else {
+        let mediaUrl = students[indexPath.row].webURL
+        guard let url = URL(string: mediaUrl) else {
             return
         }
-        guard let url = URL(string: mediaUrl!) else {
-            return
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options:[:] , completionHandler: nil)
         }
-        UIApplication.shared.open(url, options:[:] , completionHandler: nil)
     }
 }
 

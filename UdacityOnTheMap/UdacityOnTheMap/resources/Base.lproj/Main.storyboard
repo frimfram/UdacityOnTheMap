@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-Ak-vsG">
-                                <rect key="frame" x="30" y="114" width="315" height="277"/>
+                                <rect key="frame" x="30" y="64" width="315" height="277"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="bpV-ea-2UX">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="140"/>
@@ -109,7 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Uo0-Ak-vsG" firstAttribute="leading" secondItem="pnT-qN-ftq" secondAttribute="leading" constant="30" id="3Ps-6O-BbM"/>
-                            <constraint firstItem="Uo0-Ak-vsG" firstAttribute="top" secondItem="pnT-qN-ftq" secondAttribute="top" constant="50" id="FL5-Tz-2cw"/>
+                            <constraint firstItem="Uo0-Ak-vsG" firstAttribute="top" secondItem="pnT-qN-ftq" secondAttribute="top" id="FL5-Tz-2cw"/>
                             <constraint firstItem="pnT-qN-ftq" firstAttribute="trailing" secondItem="Uo0-Ak-vsG" secondAttribute="trailing" constant="30" id="d8P-lj-zsS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pnT-qN-ftq"/>

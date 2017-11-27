@@ -25,7 +25,7 @@ class StudentAddMapViewController: UIViewController {
         let annotation = MKPointAnnotation.init()
         annotation.coordinate = studentLocation!
         mapView.addAnnotation(annotation)
-        let region = MKCoordinateRegionMakeWithDistance(studentLocation!, 100, 100)
+        let region = MKCoordinateRegionMakeWithDistance(studentLocation!, 200, 200)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
         mapView.delegate = self
@@ -37,7 +37,7 @@ class StudentAddMapViewController: UIViewController {
     }
 
     @IBAction func onFinish(_ sender: Any) {
-        guard let current = ParseClient.shared().loggedInStudent else {
+        guard var current = StudentInformation.loggedInStudent else {
             return
         }
         current.webURL = webText ?? ""

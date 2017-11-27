@@ -90,14 +90,14 @@ class LoginViewController: UIViewController {
                                     "lastName": userDict["last_name"] as! String,
                                     "userId": userID!] as [String: AnyObject]
                     
-                    ParseClient.shared().loggedInStudent = Student(loggedIn)
+                    StudentInformation.loggedInStudent = Student(loggedIn)
                 } catch {
                     self.showErrorMessage("Json serialization failed for student details call")
                     return
                 }
                 //Student data fetch is done - go to next screen
                 DispatchQueue.main.async {
-                    print("Student: \(ParseClient.shared().loggedInStudent?.firstName) \(ParseClient.shared().loggedInStudent?.lastName), \(ParseClient.shared().loggedInStudent?.userId) ")
+                    print("Student: \(StudentInformation.loggedInStudent?.firstName) \(StudentInformation.loggedInStudent?.lastName), \(StudentInformation.loggedInStudent?.userId) ")
                     UIUtils.shared().showActivityIndicator(show: false, parent: self.view)
                     self.performSegue(withIdentifier: "loginFinished", sender: self)
                 }

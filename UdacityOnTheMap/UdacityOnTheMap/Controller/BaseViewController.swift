@@ -9,6 +9,11 @@
 import UIKit
 
 class BaseViewController : UIViewController {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIUtils.shared().showActivityIndicator(show: false, parent: view)
+    }
+    
     func doLogout() {
         UIUtils.shared().showActivityIndicator(show: true, parent: view)
         UdacityClient.shared().logout() { (data, error) in
@@ -24,7 +29,7 @@ class BaseViewController : UIViewController {
     }
     
     func doAdd() {
-        if let current = ParseClient.shared().loggedInStudent, current.postedPreviously {
+        if let current = StudentInformation.loggedInStudent, current.postedPreviously {
             let message = "Details for student \(current.firstName) \(current.lastName) already exists"
             let alertController = UIAlertController.init(title: "On The Map", message: message, preferredStyle: .alert)
             let dismiss = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)

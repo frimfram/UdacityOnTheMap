@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Student {
+struct Student {
     var firstName: String = ""
     var lastName: String = ""
     var userId: String = ""
@@ -21,8 +21,23 @@ class Student {
     var updatedAt: String = ""
     var postedPreviously: Bool = false
     
-    init(_ data : [String:AnyObject])
-    {
+    init?(fromData: [String:AnyObject]) {
+        guard fromData["uniqueKey"] != nil else {
+            return nil
+        }
+        guard fromData["lastName"] != nil else {
+            return nil
+        }
+        guard fromData["latitude"] != nil else {
+            return nil
+        }
+        guard fromData["longitude"] != nil else {
+            return nil
+        }
+        self.init(fromData)
+    }
+    
+    init(_ data : [String:AnyObject]) {
         if let firstName = data["firstName"]
         {
             self.firstName =  firstName as! String
@@ -35,13 +50,13 @@ class Student {
         {
             self.mapString = mapString as! String
         }
-        if let webURL = data["webURL"]
+        if let webURL = data["mediaURL"]
         {
             self.webURL = webURL as! String
         }
-        if let coordinate  = data["studentLocation"]
+        if let latitude  = data["latitude"], let longitude = data["longitude"]
         {
-            self.coordinate = coordinate as! CLLocationCoordinate2D
+            self.coordinate = CLLocationCoordinate2D(latitude: latitude as! CLLocationDegrees, longitude: longitude as! CLLocationDegrees)
         }
         if let createdAt  = data["createdAt"]
         {
@@ -55,10 +70,9 @@ class Student {
         {
             self.objectId = objectId as! String
         }
-        if let userId  = data["userId"]
+        if let userId  = data["uniqueKey"]
         {
             self.userId = userId as! String
         }
     }
-    
 }

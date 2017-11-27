@@ -54,8 +54,7 @@ class StudentAddViewController: UIViewController {
     }
     
     @IBAction func onCancel(_ sender: UIBarButtonItem) {
-        let tabController = storyboard?.instantiateViewController(withIdentifier: "tabController")
-        present(tabController!, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Navigation

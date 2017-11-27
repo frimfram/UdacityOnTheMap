@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0217FA5B1FCB90A100D31055 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217FA5A1FCB90A100D31055 /* StudentInformation.swift */; };
 		0242BE371FAEAF20007C0181 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242BE361FAEAF20007C0181 /* UdacityClient.swift */; };
 		024B4FE91F8B118D00D00A56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B4FE81F8B118D00D00A56 /* AppDelegate.swift */; };
 		024B4FEB1F8B118D00D00A56 /* StudentLocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024B4FEA1F8B118D00D00A56 /* StudentLocationsMapViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0217FA5A1FCB90A100D31055 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		0242BE361FAEAF20007C0181 /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		024B4FE51F8B118D00D00A56 /* UdacityOnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityOnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		024B4FE81F8B118D00D00A56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				0242BE361FAEAF20007C0181 /* UdacityClient.swift */,
 				02D181F61FB7BEF10064AEA2 /* Student.swift */,
 				02D181F81FC24F380064AEA2 /* MapPin.swift */,
+				0217FA5A1FCB90A100D31055 /* StudentInformation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				02E88B9E1FC90B97005C638A /* StudentAddViewController.swift in Sources */,
 				024B4FEB1F8B118D00D00A56 /* StudentLocationsMapViewController.swift in Sources */,
 				0242BE371FAEAF20007C0181 /* UdacityClient.swift in Sources */,
+				0217FA5B1FCB90A100D31055 /* StudentInformation.swift in Sources */,
 				02D181F31FAEF14A0064AEA2 /* UIUtils.swift in Sources */,
 				02D181F71FB7BEF10064AEA2 /* Student.swift in Sources */,
 			);

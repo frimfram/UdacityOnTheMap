@@ -18,10 +18,7 @@ class StudentLocationsMapViewController: BaseViewController {
         super.viewDidLoad()
         mapView.delegate = self
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIUtils.shared().showActivityIndicator(show: true, parent: view)
-    }
+
     @IBAction func logoutClicked(_ sender: UIBarButtonItem) {
         doLogout()
     }
@@ -81,25 +78,16 @@ extension StudentLocationsMapViewController: MKMapViewDelegate {
     }
     
     private func addAnnotations() {
-        guard let students = ParseClient.shared().students else {
+        guard let students = StudentInformation.students else {
             return
         }
         var annotations = [MKPointAnnotation]()
         for student in students {
-            let lat = student["latitude"] as? CLLocationDegrees
-            let long = student["longitude"] as? CLLocationDegrees
-            let first = student["firstName"] as? String
-            let last = student["lastName"] as? String
-            let url = student["mediaURL"] as? String
-            
-            if let lat=lat, let long=long, let first=first, let last=last, let url=url {
-                let annotation = MKPointAnnotation()
-                annotation.title = "\(first) \(last)"
-                let coord = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                annotation.coordinate = coord
-                annotation.subtitle = url
-                annotations.append(annotation)
-            }
+            let annotation = MKPointAnnotation()
+            annotation.title = "\(student.firstName) \(student.lastName)"
+            annotation.coordinate = student.coordinate
+            annotation.subtitle = student.webURL
+            annotations.append(annotation)
         }
         
         mapView.addAnnotations(annotations)
