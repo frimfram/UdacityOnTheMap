@@ -81,6 +81,7 @@ extension StudentLocationsMapViewController: MKMapViewDelegate {
         guard let students = StudentInformation.students else {
             return
         }
+        mapView.removeAnnotations(mapView.annotations)
         var annotations = [MKPointAnnotation]()
         for student in students {
             let annotation = MKPointAnnotation()

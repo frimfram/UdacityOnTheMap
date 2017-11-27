@@ -28,15 +28,11 @@ class ParseClient : NSObject {
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request as URLRequest) { (data, response, error) in
             guard (error == nil) else {
-                completion("Server returned error while getting student locations.")
-                return
-            }
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                completion("Get student location returned a status code other than 2xx!")
+                completion("Get students server error: \(error!.localizedDescription)")
                 return
             }
             guard let data = data else {
-                completion("Data is nil for get student locations")
+                completion("Unknown error while fetching student locations")
                 return
             }
             
